@@ -53,14 +53,14 @@ public class TarefaController {
         return tarefaService.listarPorConclusao(concluida);
     }
 
-    @GetMapping("/api/tarefas/filtro")
+   @GetMapping("/api/tarefas/filtro")
     public List<TarefaResponseDTO> listarPorPrioridadeEConclusao(
-        @RequestParam Prioridade prioridade,
-        @RequestParam boolean concluida) {
+    @RequestParam(required = false) Prioridade prioridade,
+    @RequestParam(required = false) Boolean concluida) {
 
         return tarefaService.listarPorPrioridadeEConclusao(
-            prioridade, concluida);
-    }
+          prioridade, concluida);
+}
 
     @ResponseStatus(HttpStatus.CREATED)
     @PostMapping("/api/tarefas")

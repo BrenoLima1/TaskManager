@@ -54,15 +54,29 @@ public class TarefaService {
     }
 
     public List<TarefaResponseDTO> listarPorPrioridadeEConclusao(
-        Prioridade prioridade,
-        boolean concluida) {
+    Prioridade prioridade,
+    Boolean concluida) {
 
-        return tarefaRepository
-            .findByPrioridadeAndConcluida(prioridade, concluida)
-            .stream()
-            .map(TarefaMapper::toResponseDTO)
-            .toList();
+    List<Tarefa> tarefas;
+
+    if (prioridade != null && concluida != null) {
+        tarefas = tarefaRepository
+            .findByPrioridadeAndConcluida(prioridade, concluida);
+
+    } else if (prioridade != null) {
+        tarefas = tarefaRepository.findByPrioridade(prioridade);
+
+    } else if (concluida != null) {
+        tarefas = tarefaRepository.findByConcluida(concluida);
+
+    } else {
+        tarefas = tarefaRepository.findAll();
     }
+
+    return tarefas.stream()
+        .map(TarefaMapper::toResponseDTO)
+        .toList();
+}
 
     private Tarefa buscarEntidadePorId(Long id) {
         return tarefaRepository.findById(id)

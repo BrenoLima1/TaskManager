@@ -1,3 +1,4 @@
+
 <div class="dashboard-container">
 
   <header class="dashboard-header">
@@ -14,29 +15,135 @@
 
       <div class="stat-card total">
         <span class="stat-label">Total de tarefas</span>
-        <h3>12</h3>
+        <h3>{{ dados?.totalTarefas ?? 0 }}</h3>
         <span class="stat-description">Tarefas cadastradas</span>
       </div>
 
       <div class="stat-card completed">
         <span class="stat-label">Concluídas</span>
-        <h3>7</h3>
+        <h3>{{ dados?.tarefasConcluidas ?? 0 }}</h3>
         <span class="stat-description">Tarefas finalizadas</span>
       </div>
 
       <div class="stat-card pending">
         <span class="stat-label">Pendentes</span>
-        <h3>5</h3>
+        <h3>{{ dados?.tarefasPendentes ?? 0 }}</h3>
         <span class="stat-description">Tarefas em andamento</span>
       </div>
 
       <div class="stat-card high-priority">
         <span class="stat-label">Prioridade alta</span>
-        <h3>3</h3>
+        <h3>{{ dados?.tarefasPrioridadeAlta ?? 0 }}</h3>
         <span class="stat-description">Precisam de atenção</span>
       </div>
 
+      <div class="stat-card medium-priority">
+        <span class="stat-label">Prioridade média</span>
+        <h3>{{ dados?.tarefasPrioridadeMedia ?? 0 }}</h3>
+        <span class="stat-description">Atenção moderada</span>
+      </div>
+
+      <div class="stat-card low-priority">
+        <span class="stat-label">Prioridade baixa</span>
+        <h3>{{ dados?.tarefasPrioridadeBaixa ?? 0 }}</h3>
+        <span class="stat-description">Menor urgência</span>
+      </div>
+
     </div>
+
+    <!-- Distribuição por prioridade -->
+    <section class="priority-chart">
+
+      <div class="chart-header">
+        <div>
+          <h2>Distribuição por prioridade</h2>
+          <p>Quantidade de tarefas em cada nível de prioridade.</p>
+        </div>
+      </div>
+
+      <div class="priority-item">
+        <div class="priority-info">
+          <span>Alta</span>
+          <strong>{{ dados?.tarefasPrioridadeAlta ?? 0 }}</strong>
+        </div>
+
+        <div class="progress-bar">
+          <div
+            class="progress-fill high"
+            [style.width.%]="percentualAlta">
+          </div>
+        </div>
+      </div>
+
+      <div class="priority-item">
+        <div class="priority-info">
+          <span>Média</span>
+          <strong>{{ dados?.tarefasPrioridadeMedia ?? 0 }}</strong>
+        </div>
+
+        <div class="progress-bar">
+          <div
+            class="progress-fill medium"
+            [style.width.%]="percentualMedia">
+          </div>
+        </div>
+      </div>
+
+      <div class="priority-item">
+        <div class="priority-info">
+          <span>Baixa</span>
+          <strong>{{ dados?.tarefasPrioridadeBaixa ?? 0 }}</strong>
+        </div>
+
+        <div class="progress-bar">
+          <div
+            class="progress-fill low"
+            [style.width.%]="percentualBaixa">
+          </div>
+        </div>
+      </div>
+
+    </section>
+
+    <!-- Acompanhamento das tarefas -->
+    <section class="status-chart">
+
+      <div class="chart-header">
+        <div>
+          <h2>Acompanhamento das tarefas</h2>
+          <p>Progresso das atividades cadastradas.</p>
+        </div>
+      </div>
+
+      <div class="status-item">
+        <div class="status-info">
+          <span>Concluídas</span>
+          <strong>{{ dados?.tarefasConcluidas ?? 0 }}</strong>
+        </div>
+
+        <div class="progress-bar">
+          <div
+            class="progress-fill completed"
+            [style.width.%]="percentualConcluidas">
+          </div>
+        </div>
+      </div>
+
+      <div class="status-item">
+        <div class="status-info">
+          <span>Pendentes</span>
+          <strong>{{ dados?.tarefasPendentes ?? 0 }}</strong>
+        </div>
+
+        <div class="progress-bar">
+          <div
+            class="progress-fill pending"
+            [style.width.%]="percentualPendentes">
+          </div>
+        </div>
+      </div>
+
+    </section>
 
   </section>
 

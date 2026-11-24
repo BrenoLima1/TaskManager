@@ -99,3 +99,149 @@
 .stat-card.high-priority {
   border-top-color: #ef4444;
 }
+
+.stat-card.medium-priority {
+  border-top-color: #f97316;
+}
+
+.stat-card.low-priority {
+  border-top-color: #64748b;
+}
+
+.priority-chart {
+  background-color: #ffffff;
+  padding: 28px;
+  margin-top: 32px;
+  border-radius: 12px;
+  border: 1px solid #e2e8f0;
+  box-shadow: 0 2px 6px rgba(15, 23, 42, 0.04);
+
+  .chart-header {
+    margin-bottom: 28px;
+
+    h2 {
+      font-size: 18px;
+      font-weight: 600;
+      color: #1e293b;
+      margin-bottom: 6px;
+    }
+
+    p {
+      font-size: 13px;
+      color: #64748b;
+    }
+  }
+}
+
+.priority-item {
+  margin-bottom: 24px;
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+
+  .priority-info {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+
+    span {
+      font-size: 14px;
+      font-weight: 500;
+      color: #475569;
+    }
+
+    strong {
+      font-size: 14px;
+      color: #0f172a;
+    }
+  }
+}
+
+.progress-bar {
+  width: 100%;
+  height: 10px;
+  background-color: #f1f5f9;
+  border-radius: 20px;
+  overflow: hidden;
+}
+
+.progress-fill {
+  height: 100%;
+  border-radius: 20px;
+  transition: width 0.5s ease;
+
+  &.high {
+    background-color: #ef4444;
+  }
+
+  &.medium {
+    background-color: #f97316;
+  }
+
+  &.low {
+    background-color: #64748b;
+  }
+}
+
+.status-chart {
+  background-color: #ffffff;
+  padding: 28px;
+  margin-top: 24px;
+  border-radius: 12px;
+  border: 1px solid #e2e8f0;
+  box-shadow: 0 2px 6px rgba(15, 23, 42, 0.04);
+
+  .chart-header {
+    margin-bottom: 28px;
+
+    h2 {
+      font-size: 18px;
+      font-weight: 600;
+      color: #1e293b;
+      margin-bottom: 6px;
+    }
+
+    p {
+      font-size: 13px;
+      color: #64748b;
+    }
+  }
+}
+
+.status-item {
+  margin-bottom: 24px;
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+
+  .status-info {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+
+    span {
+      font-size: 14px;
+      font-weight: 500;
+      color: #475569;
+    }
+
+    strong {
+      font-size: 14px;
+      color: #0f172a;
+    }
+  }
+}
+
+.progress-fill {
+  &.completed {
+    background-color: #22c55e;
+  }
+
+  &.pending {
+    background-color: #f59e0b;
+  }
+}
