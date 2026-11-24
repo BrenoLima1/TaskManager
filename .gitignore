@@ -1,0 +1,20 @@
+
+# Spring Boot / Maven
+task-manager/target/
+
+# Angular / Node
+task-manager-frontend/node_modules/
+task-manager-frontend/dist/
+task-manager-frontend/.angular/
+
+# IDEs
+.idea/
+.vscode/
+
+# Sistema operacional
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Logs
+*.log

@@ -1,0 +1,183 @@
+
+<div class="tasks-container">
+
+  <header class="tasks-header">
+    <div>
+      <h1>Minhas tarefas</h1>
+      <p>Gerencie e acompanhe suas atividades.</p>
+    </div>
+
+    <button
+      class="btn-new-task"
+      (click)="mostrarFormulario = !mostrarFormulario"
+    >
+      + Nova tarefa
+    </button>
+  </header>
+
+  <section class="tasks-content">
+
+    <!-- Formulário de cadastro -->
+    @if (mostrarFormulario) {
+      <div class="task-form-container">
+
+        <h2>Nova tarefa</h2>
+
+        <form
+          [formGroup]="tarefaForm"
+          (ngSubmit)="salvarTarefa()"
+        >
+
+          <div class="form-group">
+            <label for="titulo">Título</label>
+            <input
+              id="titulo"
+              type="text"
+              formControlName="titulo"
+              placeholder="Digite o título da tarefa"
+            />
+          </div>
+
+          @if (
+            tarefaForm.get('titulo')?.touched &&
+            tarefaForm.get('titulo')?.hasError('required')
+          ) {
+            <span class="error-message">
+              O título é obrigatório.
+            </span>
+          }
+
+          <div class="form-group">
+            <label for="descricao">Descrição</label>
+            <textarea
+              id="descricao"
+              formControlName="descricao"
+              placeholder="Descreva a tarefa"
+            ></textarea>
+          </div>
+
+          <div class="form-group">
+            <label for="prioridade">Prioridade</label>
+            <select
+              id="prioridade"
+              formControlName="prioridade"
+            >
+              <option value="BAIXA">Baixa</option>
+              <option value="MEDIA">Média</option>
+              <option value="ALTA">Alta</option>
+            </select>
+          </div>
+
+          <div class="form-actions">
+
+            <button
+              type="button"
+              class="btn-cancel"
+              (click)="mostrarFormulario = false"
+            >
+              Cancelar
+            </button>
+
+            <button
+              type="submit"
+              class="btn-save"
+            >
+              Salvar tarefa
+            </button>
+
+          </div>
+
+        </form>
+
+      </div>
+    }
+
+    <!-- Cabeçalho e filtros -->
+    <div class="tasks-toolbar">
+
+      <h2>Lista de tarefas</h2>
+
+      <div class="tasks-filters">
+
+        <select>
+          <option value="">Todas as prioridades</option>
+          <option value="ALTA">Alta</option>
+          <option value="MEDIA">Média</option>
+          <option value="BAIXA">Baixa</option>
+        </select>
+
+        <select>
+          <option value="">Todos os status</option>
+          <option value="false">Pendentes</option>
+          <option value="true">Concluídas</option>
+        </select>
+
+      </div>
+
+    </div>
+
+    <!-- Tabela de tarefas -->
+    <div class="tasks-table">
+
+      <div class="table-header">
+        <span>Tarefa</span>
+        <span>Prioridade</span>
+        <span>Status</span>
+        <span>Ações</span>
+      </div>
+
+      @for (tarefa of tarefas; track tarefa.id) {
+
+        <div class="table-row">
+
+          <div class="task-info">
+            <strong>{{ tarefa.titulo }}</strong>
+            <span>{{ tarefa.descricao }}</span>
+          </div>
+
+          <div>
+            <span
+              class="priority-badge"
+              [class.high]="tarefa.prioridade === 'ALTA'"
+              [class.medium]="tarefa.prioridade === 'MEDIA'"
+              [class.low]="tarefa.prioridade === 'BAIXA'"
+            >           
+            {{ tarefa.prioridade === 'ALTA' ? 'Alta' :
+             tarefa.prioridade === 'MEDIA' ? 'Média' : 'Baixa' }}
+            </span>
+          </div>
+
+          <div>
+            <span
+              class="status-badge"
+              [class.completed]="tarefa.concluida"
+              [class.pending]="!tarefa.concluida"
+            >
+              {{ tarefa.concluida ? 'Concluída' : 'Pendente' }}
+            </span>
+          </div>
+
+          <div class="task-actions">
+            <button class="btn-edit">Editar</button>
+            <button 
+            class="btn-delete"
+            (click)="excluirTarefa(tarefa.id!)"
+            >
+            Excluir
+          </button>
+
+          </div>
+
+        </div>
+
+      } @empty {
+        <div class="empty-state">
+          <p>Nenhuma tarefa cadastrada.</p>
+        </div>
+      }
+
+    </div>
+
+  </section>
+
+</div>

@@ -1,0 +1,39 @@
+<aside class="sidebar">
+
+  <div class="sidebar-brand">
+    <h2>Task Manager</h2>
+  </div>
+
+  <nav class="sidebar-menu">
+
+    <a
+      class="menu-item"
+      routerLink="/dashboard"
+      routerLinkActive="active"
+      [routerLinkActiveOptions]="{ exact: true }"
+    >
+      <span>Dashboard</span>
+    </a>
+
+    <a
+      class="menu-item"
+      routerLink="/tarefas"
+      routerLinkActive="active"
+    >
+      <span>Minhas tarefas</span>
+  </a>
+
+    <a class="menu-item">
+      <span>Configurações</span>
+    </a>
+
+  </nav>
+
+  <div class="sidebar-footer">
+    <div class="user-info">
+      <strong>Usuário</strong>
+      <span>Administrador</span>
+    </div>
+  </div>
+
+</aside>
